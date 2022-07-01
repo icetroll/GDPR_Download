@@ -1,0 +1,28 @@
+﻿<div data-ng-controller="TopNavigationController as vm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#!/">Daja-Solutions</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#!/">Skicka <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" ng-hide="vm.isGuest()" href="#!/recive">Recive <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" ng-hide="vm.userAdmin()" href="#!/administration">Administration <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" ng-show="!vm.isLoggedIn()">
+                <input class="form-control mr-sm-2" type="text" data-ng-model="vm.userData.email" placeholder="E-Post" aria-label="E-Post">
+                <input class="form-control mr-sm-2" type="password" data-ng-model="vm.userData.password" ng-keyup="$event.keyCode == 13 ? vm.login() : null" placeholder="lösenord" aria-label="lösenord">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit" data-ng-click="vm.login()">Logga in</button>
+            </form>
+            <div data-ng-show="vm.isLoggedIn()"><button class="btn btn-info" ng-click="vm.logout()">Logga ut <span class="fa fa-sign-out" aria-hidden="true"></span></button></div>
+        </div>
+    </nav>
+</div>

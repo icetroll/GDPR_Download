@@ -1,0 +1,67 @@
+﻿<div class="col-md-12 upload-container" style="background-color: lightgray;">
+    <form method="post" enctype="multipart/form-data">
+        <br />
+        <div class="upload-header">
+            <h3>Daja-Solutions</h3>
+        </div>
+        <div class="container">
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Ladda upp filer</strong> <small> </small></div>
+                        <div class="panel-body">
+                            <div class="input-group file-preview">
+
+                                <div class="col-md-12">
+                                    <div class="form-group files color">
+                                        <input id="uploadFiles" ng-disabled="!vm.isLoggedIn()" type="file" class="form-control" multiple="">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /input-group image-preview [TO HERE]-->
+                            <div class="col-md-4">
+                                <p style="font-size: 11px;margin-bottom: 2px;">Använd ett starkt lösenord: (Lämna lösenordet separat till mottagaren)</p>
+                                <input id="filePW" class="form-control mr-sm-2" type="text" placeholder="lösenord" aria-label="Password" />
+                            </div>
+                            <modal title="Meddelande" visible="showModal">
+                            </modal>
+                            <br />
+                            <div class="col-md-12">
+                                <button class="btn btn-info" ng-disabled="!vm.isLoggedIn()" ng-click="vm.startUploadFiles()" fileUpload style="width: 100%">Ladda upp</button>
+                            </div>
+                            <br /><button class="btn btn-info" ng-click="vm.files()">Lista filer</button><br /><br />
+                            <!-- Drop Zone -->
+                            <div class="panel panel-default">
+                                <div class="row clearfix">
+                                    <div class="col-md-12 column">
+                                        <table class="table table-bordered table-hover" id="tab_logic">
+                                            <thead>
+                                                <tr>
+                                                    <th style="background-color: white;" class="text-center">
+                                                        Fil Namn
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="file in uploadFiles">
+                                                    <th class="text-left" style="background-color: white; color: black;">
+                                                        {{file.name}}
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- /container -->
+</div>

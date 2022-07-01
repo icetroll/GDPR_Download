@@ -1,0 +1,22 @@
+﻿<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{ title }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body" ng-transclude>
+                <div ng-hide="vm.isGuest()">
+                    <b>Mottagare: </b><input class="form-control" type="text" placeholder="Mottagare" id="reciver" ng-model="vm.sendData.reciverEmail" />
+                    <br />
+                </div>
+                <b>Ämne: </b><input class="form-control" type="text" placeholder="Ämne" id="subject" ng-model="vm.sendData.subject"/>
+                <br />
+                <b>Meddelande: </b>
+                <textarea name="Area" class="form-control" cols="60" rows="8" id="description" ng-model="vm.sendData.description"></textarea>
+                <br />
+                <button ng-disabled="vm.sent" class="btn btn-info" ng-click="vm.send()" style="width: 100%">Skicka</button>
+            </div>
+        </div>
+    </div>
+</div>

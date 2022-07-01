@@ -1,0 +1,35 @@
+﻿<div class="col-md-12 upload-container" style="background-color: lightgray;">
+    <form method="post" enctype="multipart/form-data">
+        <br />
+        <div class="upload-header">
+            <h3>Daja-Solutions</h3>
+        </div>
+        <div class="container">
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Ta emot filer</strong> <small> </small></div>
+                        <div class="panel-body">
+                            <!-- /input-group image-preview [TO HERE]-->
+                            <div class="col-md-6">
+                                <p style="font-size: 11px;margin-bottom: 2px;">Enter Email for uploader: (Make sure it's correct mail adress)</p>
+                                <input id="reciverEmail" class="form-control mr-sm-12" type="text" placeholder="E-Mail" aria-label="Password" />
+                            </div>
+                            <modal title="Meddelande" visible="showModal">
+                            </modal>
+                            <br />
+                            <div class="col-md-12">
+                                <button class="btn btn-info" ng-disabled="!vm.isLoggedIn()" ng-click="vm.sendUploadLink()" fileUpload style="width: 100%">Skicka länk</button>
+                            </div>
+                            <br />
+
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- /container -->
+</div>

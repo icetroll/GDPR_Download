@@ -1,0 +1,206 @@
+﻿<div class="tab">
+    <button class="tablinks" ng-click="vm.openTab($event, 'userManager');getUsers();vm.closeUpdate()">Administrera användare</button>
+    <button class="tablinks" ng-click="vm.openTab($event, 'Inställningar');vm.getSettings();vm.closeUpdate()">Inställningar</button>
+</div>
+
+<div id="Inställningar" class="tabcontent col-md-12 upload-container" style="background-color: lightgray;">
+    <br />
+    <div class="upload-header">
+        <h3>Inställningar</h3>
+    </div>
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="col">
+                <b>SMTP Inställningar:</b><br />
+                <p style="font-size: 14px;margin-bottom: 2px;">Server:</p>
+                <input class="form-control mr-sm-2" type="text" ng-model="vm.settings.smtpHost" />
+                <br />
+                <p style="font-size: 14px;margin-bottom: 2px;">Port:</p>
+                <input class="form-control mr-sm-2" type="text" ng-model="vm.settings.smtpPort"/>
+                <br />
+                <p style="font-size: 14px;margin-bottom: 2px;">Användarnamn:</p>
+                <input class="form-control mr-sm-2" type="text" ng-model="vm.settings.smtpUsername"/>
+                <br />
+                <p style="font-size: 14px;margin-bottom: 2px;">lösenord:</p>
+                <input class="form-control mr-sm-2" type="text" ng-model="vm.settings.smtpPassword"/>
+            </div>
+            <div class="col">
+                <b>SQL Inställningar:</b><br />
+                <p style="font-size: 14px;margin-bottom: 2px;">Server:</p>
+                <input class="form-control mr-sm-2" type="text" ng-model="vm.settings.sqlHost" />
+                <br />
+                <p style="font-size: 14px;margin-bottom: 2px;">Port:</p>
+                <input class="form-control mr-sm-2" type="text" ng-model="vm.settings.sqlPort" />
+                <br />
+                <p style="font-size: 14px;margin-bottom: 2px;">Databas:</p>
+                <input class="form-control mr-sm-2" type="text" ng-model="vm.settings.sqlDatabase" />
+                <br />
+                <p style="font-size: 14px;margin-bottom: 2px;">Användarnamn:</p>
+                <input class="form-control mr-sm-2" type="text" ng-model="vm.settings.sqlUsername" />
+                <br />
+                <p style="font-size: 14px;margin-bottom: 2px;">lösenord:</p>
+                <input class="form-control mr-sm-2" type="text" ng-model="vm.settings.sqlPassword" />
+            </div>
+            <button class="btn btn-info" style="margin-top:20px;width: 100%" ng-click="vm.setSettings(vm.settings)">Updatera Inställningar</button>
+        </div>
+    </div>
+</div>
+
+<div id="userManager" class="col-md-12 upload-container tabcontent" style="background-color: lightgray;display: block;">
+    <br />
+    <div class="upload-header">
+        <h3>Administrera användare</h3>
+    </div>
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table" style="background-color: white;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">E-Post</th>
+                                    <th scope="col">Namn</th>
+                                    <th scope="col">Roller</th>
+                                    <th scope="col"> </th>
+                                    <th scope="col"><button class="btn btn-success" ng-click="vm.newUser()">Lägg till användare</button></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="user in vm.users">
+                                    <th>{{user.email}}</th>
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.roles}}</td>
+                                    <td><button class="btn btn-info" ng-click="vm.updateUser(user)">Uppdatera</button></td>
+                                    <td><button class="btn btn-danger" ng-click="vm.removeUser(user.email)">Ta bort</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <!--<br />-->
+                        <!--<ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li ng-repeat="page in vm.total" class="page-item"><a class="page-link" href="#">{{page}}</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+
+<div id="userUpdater" class="col-md-12 update-container" style="background-color: lightgray;display: block;" ng-hide="hideUpdate">
+    <div class="modal-body">
+        <div class="upload-header">
+            <h3>Updatera användare:</h3>
+        </div><br />
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Namn: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" placeholder="Namn" ng-model="vm.userData.name">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">Användarnamn/Email: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" placeholder="Användarnamn" ng-model="vm.userData.email">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Lösenord: </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" placeholder="Lösenord" ng-model="vm.userData.password">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="confirmPassword" class="col-sm-2 col-form-label">Bekräfta lösenord: </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Lösenord" ng-model="vm.userData.confirmPassword">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>Roller:</b>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="Admin" ng-model="vm.userData.admin">
+                <label class="form-check-label" for="Admin">Administratör</label>
+            </div>
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="User" ng-model="vm.userData.user">
+                <label class="form-check-label" for="User">Användare</label>
+            </div>
+        </div>
+
+        <div class="row pull-right">
+            <button class="btn btn-danger" style="margin-right:10px;" ng-click="vm.closeUpdate()">Stäng</button>
+            <button class="btn btn-info" ng-click="vm.saveUser(vm.userData)">Spara</button>
+        </div>
+        <br />
+        <br />
+    </div>
+</div>
+
+
+<div id="newUser" class="col-md-12 update-container" style="background-color: lightgray;display: block;" ng-hide="hideNewUser">
+    <div class="modal-body">
+        <div class="upload-header">
+            <h3>Lägg till en ny användare:</h3>
+        </div><br />
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Namn: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="newName" placeholder="Namn" ng-model="vm.userData.name">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">Användarnamn/Email: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="newUsername" placeholder="Användarnamn" ng-model="vm.userData.email">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Lösenord: </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="newPassword" placeholder="Lösenord" ng-model="vm.userData.password">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="confirmPassword" class="col-sm-2 col-form-label">Bekräfta lösenord: </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="newConfirmPassword" placeholder="Lösenord" ng-model="vm.userData.confirmPassword">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>Roller:</b>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="Admin" ng-model="vm.userData.admin">
+                <label class="form-check-label" for="Admin">Administratör</label>
+            </div>
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="User" ng-model="vm.userData.user">
+                <label class="form-check-label" for="User">Användare</label>
+            </div>
+        </div>
+
+        <div class="row pull-right">
+            <button class="btn btn-danger" style="margin-right:10px;" ng-click="vm.closeUpdate()">Stäng</button>
+            <button class="btn btn-info" ng-click="vm.addNewUser(vm.userData)">Spara</button>
+        </div>
+        <br />
+        <br />
+    </div>
+</div>
